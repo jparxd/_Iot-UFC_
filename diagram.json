@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "Sentinel",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -15.2,
+      "left": -132.18,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 88.8,
+      "left": -190.2,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 102, "left": -130.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 187.2,
+      "left": -144.55,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v28.8", "h67.2", "v-19.2" ] ],
+    [ "pir1:OUT", "esp:13", "green", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.1", "green", [ "v48", "h134.4", "v-67.2" ] ],
+    [ "led1:A", "esp:12", "green", [ "v0" ] ],
+    [ "bz1:2", "esp:14", "green", [ "v38.4", "h114.8", "v-28.8" ] ],
+    [ "led1:C", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "esp:GND.2", "green", [ "h278.4", "v-30" ] ]
+  ],
+  "dependencies": {}
+}
